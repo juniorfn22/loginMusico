@@ -18,7 +18,7 @@ $result = mysqli_query($conexao, $query);
 $row = mysqli_num_rows($result);
 
 echo $row;
-
+#hhhhhhggggggg
 if ($row == 1){
 $usuario_bd = mysqli_fetch_assoc($result);
 $_SESSION['nome'] = $usuario_bd['nome'];
