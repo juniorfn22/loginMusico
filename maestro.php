@@ -23,7 +23,7 @@ include('verifica_login.php');
 
 <body>
 <nav class="navbar navbar-expand-sm navbar-light    ">
-<a class="navbar-brand" href="#">Área do Músico</a>
+<a class="navbar-brand" href="#">Área do Maestro</a>
     <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#collapsibleNavId" aria-controls="collapsibleNavId"
         aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -37,10 +37,10 @@ include('verifica_login.php');
                 <a class="nav-link" href="#">Link</a>
             </li>
             <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="dropdownId" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown</a>
+                <a class="nav-link dropdown-toggle" href="#" id="dropdownId" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Cadastro</a>
                 <div class="dropdown-menu" aria-labelledby="dropdownId">
-                    <a class="dropdown-item" href="#">Action 1</a>
-                    <a class="dropdown-item" href="#">Action 2</a>
+                    <a class="dropdown-item" href="#">Musico</a>
+                    <a class="dropdown-item" href="#">Partitura</a>
                 </div>
             </li>
         </ul>
