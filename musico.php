@@ -1,6 +1,13 @@
 <?php
 //session_start();
 include('verifica_login.php');
+include('conexao.php');
+
+$sql = "select idpartitura,nome, caminho,naipe from paritura where naipe='{$_SESSION['naipe']}' ";
+$result = mysqli_query($conexao,$sql);
+
+
+
 ?>
 
 <!--<h2>Olá, <?php echo $_SESSION['nome'];?> | <a href="logout.php">Sair</a></h2>-->
@@ -39,8 +46,8 @@ include('verifica_login.php');
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="dropdownId" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown</a>
                 <div class="dropdown-menu" aria-labelledby="dropdownId">
-                    <a class="dropdown-item" href="#">Action 1</a>
-                    <a class="dropdown-item" href="#">Action 2</a>
+                    <a class="dropdown-item" href="#">Item</a>
+                    <a class="dropdown-item" href="#">Item</a>
                 </div>
             </li>
         </ul>
@@ -51,18 +58,29 @@ include('verifica_login.php');
     </div>
 </nav>
 
+
     <div class="container">
-            <!-- Modal extra grande -->
-            <button class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-xl">Hino 159</button>
-            <div class="modal fade bd-example-modal-xl" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-xl">
-                <div class="modal-content">
-                    <div class="embed-responsive embed-responsive-16by9">
-                        <iframe class="embed-responsive-item" src="./hinos/14_C.C./14cc_1clarinete.pdf"</iframe>
+        <!-- Modal extra grande -->
+        <?php
+            
+            while ($row = mysqli_fetch_array($result)) {
+                    
+            
+            echo '<button class="btn btn-primary mr-3" data-toggle="modal" data-target="#mymodal'.$row['idpartitura'].'">' . $row['nome'] .' </button>';
+            $caminho = $row['caminho'];
+            
+        
+            echo '<div class="modal fade " id="mymodal'.$row['idpartitura'].'" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-xl">
+                    <div class="modal-content">
+                        <div class="embed-responsive embed-responsive-16by9">
+                            <iframe class="embed-responsive-item" id="frame" src="'. $caminho .'"></iframe>
+                        </div>
                     </div>
                 </div>
-    </div>
-    </div>
+            </div>';
+        }   
+            ?>
     </div>
 
 
