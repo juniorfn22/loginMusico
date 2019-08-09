@@ -3,7 +3,7 @@
 include('verifica_login.php');
 include('conexao.php');
 
-$sql = "select idpartitura,nome, caminho,naipe from paritura ";
+$sql = "select idpartitura,nome, caminho,naipe from partitura ";
     $result = mysqli_query($conexao,$sql);
 
 ?>

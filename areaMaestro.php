@@ -3,7 +3,7 @@
 include('verifica_login.php');
 include('conexao.php');
 
-$sql = "select idpartitura,nome, caminho,naipe from paritura ";
+$sql = "select idpartitura,nome, caminho,naipe from partitura ";
     $result = mysqli_query($conexao,$sql);
 
 ?>
@@ -48,8 +48,8 @@ $sql = "select idpartitura,nome, caminho,naipe from paritura ";
       </div>
       <div class="sidebar-menu">
         <ul>
-          <li class="header-menu">
-            <span>General</span>
+          <li class="header-menu ">
+            <span>Menu</span>
           </li>
           <li>
           <div class="panel-group">
@@ -58,8 +58,8 @@ $sql = "select idpartitura,nome, caminho,naipe from paritura ";
                 <a data-toggle="collapse" href="#collapse1">Cadastrar</a>
                 </div>
                 <div id="collapse1" class="panel-collapse collapse">
-                <div class="panel-body mr-3"><a href="">Musico</a></div>
-                <div class="panel-footer mr-3"><a href="">Partitura</a></div>
+                <div class="panel-body ml-3"><a href="cadastroMusico.php">Musico</a></div>
+                <div class="panel-footer ml-3"><a href="cadastroPartitura.php">Partitura</a></div>
                 </div>
             </div>
             </div>
@@ -104,18 +104,40 @@ $sql = "select idpartitura,nome, caminho,naipe from paritura ";
         <i class="fa fa-cog"></i>
         <span class="badge-sonar"></span>
       </a>
-      <a href="#">
+      <a href="logout.php">
         <i class="fa fa-power-off"></i>
       </a>
     </div>
   </nav>
   <!-- sidebar-wrapper  -->
   <main class="page-content">
-    <div class="container-fluid">
-      
+    
+    <!-- Modal extra grande -->
+    <?php
+            
+            while ($row = mysqli_fetch_array($result)) {
+                    
+            
+            echo '<button class="btn btn-dark mr-3" data-toggle="modal" data-target="#mymodal'.$row['idpartitura'].'">' . $row['nome'] .' </button>';
+            $caminho = $row['caminho'];
+            
+        
+            echo '<div class="modal fade modal" id="mymodal'.$row['idpartitura'].'" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="embed-responsive embed-responsive-16by9">
+                            <iframe class="embed-responsive-item" id="frame" src="'. $caminho .'"></iframe>
+                        </div>
+                    </div>
+                </div>
+            </div>';
+        }   
+            ?>
+    <div class="container-fluid">    
 
-  </main>
+  
   <!-- page-content" -->
+  
 </div>
 <!-- page-wrapper -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>

@@ -25,7 +25,7 @@ if ($row == 1){
         $usuario_bd = mysqli_fetch_assoc($result);
         $_SESSION['nome'] = $nome;
         $_SESSION['naipe'] = $naipe;
-        header('Location: maestro.php');
+        header('Location: areaMaestro.php');
         exit();
     }else{
         $usuario_bd = mysqli_fetch_assoc($result);
