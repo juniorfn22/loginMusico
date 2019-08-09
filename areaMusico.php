@@ -3,7 +3,7 @@
 include('verifica_login.php');
 include('conexao.php');
 
-$sql = "select idpartitura,nome, caminho,naipe from partitura ";
+$sql = "select idpartitura,nome, caminho,naipe from paritura where naipe='{$_SESSION['naipe']}' ";
     $result = mysqli_query($conexao,$sql);
 
 ?>
@@ -33,10 +33,8 @@ $sql = "select idpartitura,nome, caminho,naipe from partitura ";
   <nav id="sidebar" class="sidebar-wrapper">
     <div class="sidebar-content">
       <div class="sidebar-brand">
-
-        <a href="#">Area do Maestro</a>
-
-       
+        <a href="#">Area do Músico</a>
+        
       </div>
       <div class="sidebar-header">
         
@@ -50,36 +48,19 @@ $sql = "select idpartitura,nome, caminho,naipe from partitura ";
       </div>
       <div class="sidebar-menu">
         <ul>
-          <li class="header-menu ">
-            <span>Menu</span>
+          <li class="header-menu">
+            <span>General</span>
           </li>
           <li>
           <div class="panel-group">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                <a data-toggle="collapse" href="#collapse1">Cadastrar</a>
+                <a data-toggle="collapse" href="#collapse1">Hinos</a>
                 </div>
                 <div id="collapse1" class="panel-collapse collapse">
-
-                <div class="panel-body ml-3"><a href="cadastroMusico.php">Musico</a></div>
-                <div class="panel-footer ml-3"><a href="cadastroPartitura.php">Partitura</a></div>
-
-
-                </div>
-            </div>
-            </div>
-            </li> 
-            <li>
-          <div class="panel-group">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                <a data-toggle="collapse" href="#collapse2">Hinos</a>
-                </div>
-                <div id="collapse2" class="panel-collapse collapse">
-                <div class="panel-footer ml-3"><a href="#">Avulsos</a></div>
+                <div class="panel-body ml-3"><a href="#">Harpa Cristã</a></div>
                 <div class="panel-footer ml-3"><a href="#">Cantor Cristão</a></div>
                 <div class="panel-footer ml-3"><a href="#">Dobrados</a></div>
-                <div class="panel-body ml-3"><a href="#">Harpa Cristã</a></div>
                 </div>
             </div>
             </div>
@@ -124,10 +105,7 @@ $sql = "select idpartitura,nome, caminho,naipe from partitura ";
         <i class="fa fa-cog"></i>
         <span class="badge-sonar"></span>
       </a>
-
-
       <a href="logout.php">
-
         <i class="fa fa-power-off"></i>
       </a>
     </div>
@@ -157,7 +135,6 @@ $sql = "select idpartitura,nome, caminho,naipe from partitura ";
 
   </main>
   <!-- page-content" -->
-  
 </div>
 <!-- page-wrapper -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>

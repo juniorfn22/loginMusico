@@ -3,13 +3,13 @@
 include('verifica_login.php');
 include('conexao.php');
 
-$sql = "select idpartitura,nome, caminho,naipe from partitura ";
+$sql = "select idpartitura,nome, caminho,naipe from paritura ";
     $result = mysqli_query($conexao,$sql);
 
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 
 <head>
     <meta charset="utf-8">
@@ -33,10 +33,8 @@ $sql = "select idpartitura,nome, caminho,naipe from partitura ";
   <nav id="sidebar" class="sidebar-wrapper">
     <div class="sidebar-content">
       <div class="sidebar-brand">
-
-        <a href="#">Area do Maestro</a>
-
-       
+        <a href="areaMaestro.php">Area do Maestro</a>
+        
       </div>
       <div class="sidebar-header">
         
@@ -50,8 +48,8 @@ $sql = "select idpartitura,nome, caminho,naipe from partitura ";
       </div>
       <div class="sidebar-menu">
         <ul>
-          <li class="header-menu ">
-            <span>Menu</span>
+          <li class="header-menu">
+            <span>General</span>
           </li>
           <li>
           <div class="panel-group">
@@ -60,11 +58,8 @@ $sql = "select idpartitura,nome, caminho,naipe from partitura ";
                 <a data-toggle="collapse" href="#collapse1">Cadastrar</a>
                 </div>
                 <div id="collapse1" class="panel-collapse collapse">
-
                 <div class="panel-body ml-3"><a href="cadastroMusico.php">Musico</a></div>
                 <div class="panel-footer ml-3"><a href="cadastroPartitura.php">Partitura</a></div>
-
-
                 </div>
             </div>
             </div>
@@ -124,40 +119,80 @@ $sql = "select idpartitura,nome, caminho,naipe from partitura ";
         <i class="fa fa-cog"></i>
         <span class="badge-sonar"></span>
       </a>
-
-
-      <a href="logout.php">
-
+      <a href="#">
         <i class="fa fa-power-off"></i>
       </a>
     </div>
   </nav>
   <!-- sidebar-wrapper  -->
   <main class="page-content">
-    <div class="container-fluid">
-      <!-- Modal extra grande -->
-      <?php
-            
-            while ($row = mysqli_fetch_array($result)) {
-            
-            echo '<button class="btn btn-dark mr-3 mb-2" data-toggle="modal" data-target="#mymodal'.$row['idpartitura'].'">' . $row['nome'] .' </button>';
-            $caminho = $row['caminho'];
-            
-            echo '<div class="modal fade " id="mymodal'.$row['idpartitura'].'" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
-                <div class="modal-dialog modal-lg">
-                    <div class="modal-content">
-                        <div class="embed-responsive embed-responsive-16by9">
-                            <iframe class="embed-responsive-item" id="frame" src="'. $caminho .'"></iframe>
-                        </div>
+            <div class="container-fluid">
+                <h3 class="h3">Cadastro de Músico</h3>
+                <?php 
+                    if (isset($_SESSION['status_cadastro'])){
+                    ?>
+                    <div class="notification is-success">
+                      <p>Cadastro efetuado!</p>
                     </div>
-                </div>
-            </div>';
-            }   
-        ?>
+                    <?php 
+                    };
+                    unset($_SESSION['status_cadastro']);
+                    ?>
+
+                    <?php 
+                    if (isset($_SESSION['usuario_existe'])){
+                    ?>
+                    <div class="notification is-info">
+                        <p>O usuário escolhido já existe. Informe outro e tente novamente.</p>
+                    </div>
+                    <?php 
+                    };
+                    unset($_SESSION['usuario_existe']);
+                    ?>
+                <form action="cadastrar.php" method="POST">
+                      <div class="row">
+                        <div class="col">
+                            <label for="nome" class="label mr-1">Nome:</label>
+                            <input type="text" name="nome" placeholder="digite o nome" class="form-control" required>
+                      </div>
+                      <div class="col">
+                            <label for="login" class="label mr-1">Usuário:</label>
+                            <input type="text" name="usuario" placeholder="digite o usuario" class="form-control" required>
+                      </div>
+                      </div>
+                      <div class="row">
+                      <div class="col">
+                            <label for="senha" class="label mr-1">Senha:</label>
+                            <input type="password" name="senha" placeholder="digite a senha" class="form-control" required>
+                        </div>  
+                      <div class="col">
+                            <label for="nome" class="label mr-1">Naipe:</label>
+                            <select name="naipe" id="naipe" class="custom-select" required>
+                                                <option value="" class="op" id="op" disable selected>selecione o naipe</option>
+                                                <option value="0">Maestro</option>
+                                                <option value="1">1º Clarinete</option>
+                                                <option value="2">2º Clarinete</option>
+                                                <option value="3">1º Trompete</option>
+                                                <option value="4">2º Trompete</option>
+                                                <option value="5">Flauta</option>
+                                                <option value="6">Sax Alto</option>
+                                                <option value="7">Sax Tenor</option>
+                                                <option value="8">Trombone</option>
+                                                <option value="9">Tuba Bb</option>
+                                                <option value="10">Tuba Eb</option>
+                                                <option value="11">Violino</option>
+                            </select>
+                      </div>
+                      </div>
+              <input type="submit" class="btn mt-2 btn-primary"  value="cadastrar"> 
+          </form>
+</div>
+
+      
+      
 
   </main>
   <!-- page-content" -->
-  
 </div>
 <!-- page-wrapper -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>

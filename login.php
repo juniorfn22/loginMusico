@@ -31,7 +31,7 @@ if ($row == 1){
         $usuario_bd = mysqli_fetch_assoc($result);
         $_SESSION['nome'] = $nome;
         $_SESSION['naipe'] = $naipe;
-        header('Location: musico.php');
+        header('Location: areaMusico.php');
         exit();
         }
 } else {
