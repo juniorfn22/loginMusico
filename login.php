@@ -25,13 +25,21 @@ if ($row == 1){
         $usuario_bd = mysqli_fetch_assoc($result);
         $_SESSION['nome'] = $nome;
         $_SESSION['naipe'] = $naipe;
+<<<<<<< HEAD
         header('Location: areaMaestro.php');
+=======
+        header('Location: maestro.php');
+>>>>>>> aa5a047178cac4d8f037ed4a48802cda4bb85a0f
         exit();
     }else{
         $usuario_bd = mysqli_fetch_assoc($result);
         $_SESSION['nome'] = $nome;
         $_SESSION['naipe'] = $naipe;
+<<<<<<< HEAD
         header('Location: areaMusico.php');
+=======
+        header('Location: musico.php');
+>>>>>>> aa5a047178cac4d8f037ed4a48802cda4bb85a0f
         exit();
         }
 } else {

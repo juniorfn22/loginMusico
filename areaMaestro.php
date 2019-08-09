@@ -33,7 +33,11 @@ $sql = "select idpartitura,nome, caminho,naipe from paritura ";
   <nav id="sidebar" class="sidebar-wrapper">
     <div class="sidebar-content">
       <div class="sidebar-brand">
+<<<<<<< HEAD
         <a href="#">Area do Maestro</a>
+=======
+        <a href="#">Area do Músico</a>
+>>>>>>> aa5a047178cac4d8f037ed4a48802cda4bb85a0f
         
       </div>
       <div class="sidebar-header">
@@ -58,6 +62,7 @@ $sql = "select idpartitura,nome, caminho,naipe from paritura ";
                 <a data-toggle="collapse" href="#collapse1">Cadastrar</a>
                 </div>
                 <div id="collapse1" class="panel-collapse collapse">
+<<<<<<< HEAD
                 <div class="panel-body ml-3"><a href="cadastroMusico.php">Musico</a></div>
                 <div class="panel-footer ml-3"><a href="cadastroPartitura.php">Partitura</a></div>
                 </div>
@@ -75,6 +80,10 @@ $sql = "select idpartitura,nome, caminho,naipe from paritura ";
                 <div class="panel-footer ml-3"><a href="#">Cantor Cristão</a></div>
                 <div class="panel-footer ml-3"><a href="#">Dobrados</a></div>
                 <div class="panel-body ml-3"><a href="#">Harpa Cristã</a></div>
+=======
+                <div class="panel-body mr-3"><a href="">Musico</a></div>
+                <div class="panel-footer mr-3"><a href="">Partitura</a></div>
+>>>>>>> aa5a047178cac4d8f037ed4a48802cda4bb85a0f
                 </div>
             </div>
             </div>
@@ -119,13 +128,18 @@ $sql = "select idpartitura,nome, caminho,naipe from paritura ";
         <i class="fa fa-cog"></i>
         <span class="badge-sonar"></span>
       </a>
+<<<<<<< HEAD
       <a href="logout.php">
+=======
+      <a href="#">
+>>>>>>> aa5a047178cac4d8f037ed4a48802cda4bb85a0f
         <i class="fa fa-power-off"></i>
       </a>
     </div>
   </nav>
   <!-- sidebar-wrapper  -->
   <main class="page-content">
+<<<<<<< HEAD
     <div class="container-fluid" >
       <!-- Modal extra grande -->
       <?php
@@ -146,6 +160,10 @@ $sql = "select idpartitura,nome, caminho,naipe from paritura ";
             </div>';
             }   
         ?>
+=======
+    <div class="container-fluid">
+      
+>>>>>>> aa5a047178cac4d8f037ed4a48802cda4bb85a0f
 
   </main>
   <!-- page-content" -->

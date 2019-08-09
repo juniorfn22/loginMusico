@@ -73,8 +73,11 @@
     margin: 2px;
   }
   
+<<<<<<< HEAD
  
 
+=======
+>>>>>>> aa5a047178cac4d8f037ed4a48802cda4bb85a0f
   .page-wrapper .theme.chiller-theme {
     background: #1e2229;
   }
@@ -357,17 +360,26 @@
     width: 100%;
     padding-left: 0px;
     padding-top: 20px;
+<<<<<<< HEAD
     
+=======
+>>>>>>> aa5a047178cac4d8f037ed4a48802cda4bb85a0f
   }
   
   .page-wrapper .page-content > div {
     padding: 20px 40px;
+<<<<<<< HEAD
    
+=======
+>>>>>>> aa5a047178cac4d8f037ed4a48802cda4bb85a0f
   }
   
   .page-wrapper .page-content {
     overflow-x: hidden;
+<<<<<<< HEAD
     
+=======
+>>>>>>> aa5a047178cac4d8f037ed4a48802cda4bb85a0f
   }
   
   /*------scroll bar---------------------*/
