@@ -24,15 +24,16 @@ if ($row == 1){
     if ($naipe == 0){
         $usuario_bd = mysqli_fetch_assoc($result);
         $_SESSION['nome'] = $nome;
-        header('Location: maestro.php');
+        $_SESSION['naipe'] = $naipe;
+        header('Location: areaMaestro.php');
         exit();
     }else{
         $usuario_bd = mysqli_fetch_assoc($result);
         $_SESSION['nome'] = $nome;
-        header('Location: painel.php');
+        $_SESSION['naipe'] = $naipe;
+        header('Location: areaMusico.php');
         exit();
-        echo "musico";
-}
+        }
 } else {
     $_SESSION['nao_autenticado'] = true;
     header('Location: index.php');
