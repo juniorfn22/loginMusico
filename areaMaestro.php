@@ -6,6 +6,12 @@ include('conexao.php');
 $sql = "select idpartitura,nome, caminho,naipe from partitura ";
     $result = mysqli_query($conexao,$sql);
 
+if ($_SESSION['naipe'] == 0){
+  $naipe = "Maestro";
+}
+
+
+
 ?>
 
 <!DOCTYPE html>
@@ -44,7 +50,7 @@ $sql = "select idpartitura,nome, caminho,naipe from partitura ";
           <span class="user-name">
             <strong><?php echo $_SESSION['nome'];?></strong>
           </span>
-          <span class="user-role"><?php echo $_SESSION['naipe'];?></span>
+          <span class="user-role"><?php echo $naipe?></span>
           
         </div>
       </div>

@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 <?php 
 session_start();
 ?>
@@ -58,7 +58,7 @@ session_start();
 
 
 </body>
-=======
+
 <?php 
 session_start();
 ?>
@@ -118,5 +118,4 @@ session_start();
 
 
 </body>
->>>>>>> aa5a047178cac4d8f037ed4a48802cda4bb85a0f
 </html>
