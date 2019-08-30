@@ -60,7 +60,6 @@ session_start();
 </body>
 
 <?php 
-session_start();
 ?>
 <!DOCTYPE html>
 <html>
