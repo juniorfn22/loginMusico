@@ -3,13 +3,8 @@
 include('verifica_login.php');
 include('conexao.php');
 
-$sql = "select idpartitura,nome, caminho,naipe from partitura ";
+$sql = "select idpartitura,nome, caminho,naipe from partitura where tipo = 'dobrados' group by idpartitura,nome, caminho,naipe ";
     $result = mysqli_query($conexao,$sql);
-
-if ($_SESSION['naipe'] == 0){
-  $naipe = "Maestro";
-}
-
 
 
 ?>
@@ -36,28 +31,28 @@ if ($_SESSION['naipe'] == 0){
   <a id="show-sidebar" class="btn btn-sm btn-dark" href="#">
     <i class="fas fa-bars"></i>
   </a>
-    <?php include('navBar.php'); ?>
+    <?php include('navBar.php') ?>
   <!-- sidebar-wrapper  -->
   <main class="page-content">
     <div class="container-fluid">
       <!-- Modal extra grande -->
       <?php
+      
+while ($row = mysqli_fetch_assoc($result)) {
+  echo '<button class="btn btn-dark mr-3 mb-2" data-toggle="modal" data-target="#mymodal'.$row['idpartitura'].'">' . $row['nome'] . " - " . $row['naipe'] .' </button>';
+            $caminho = $row['caminho'];
             
-            while ($row = mysqli_fetch_array($result)) {
-              echo '<button class="btn btn-dark mr-3 mb-2" data-toggle="modal" data-target="#mymodal'.$row['idpartitura'].'">' . $row['nome'] . " - " . $row['naipe'] .' </button>';
-              $caminho = $row['caminho'];
-              
-              echo '<div class="modal fade " id="mymodal'.$row['idpartitura'].'" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
-                  <div class="modal-dialog modal-lg">
-                      <div class="modal-content">
-                          <div class="embed-responsive embed-responsive-16by9">
-                              <iframe class="embed-responsive-item" id="frame" src="'. $caminho .'"></iframe>
-                          </div>
-                      </div>
-                  </div>
-              </div>';
-
+            echo '<div class="modal fade " id="mymodal'.$row['idpartitura'].'" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="embed-responsive embed-responsive-16by9">
+                            <iframe class="embed-responsive-item" id="frame" src="'. $caminho .'"></iframe>
+                        </div>
+                    </div>
+                </div>
+            </div>';
             }   
+          echo '<hr>';
         ?>
 
   </main>
@@ -72,5 +67,4 @@ if ($_SESSION['naipe'] == 0){
         crossorigin="anonymous"></script>
     
 </body>
-
 </html>
