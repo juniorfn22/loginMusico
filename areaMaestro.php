@@ -41,6 +41,8 @@ if ($_SESSION['naipe'] == 0){
   <main class="page-content">
     <div class="container-fluid">
       <!-- Modal extra grande -->
+      
+
       <?php
             
             while ($row = mysqli_fetch_array($result)) {

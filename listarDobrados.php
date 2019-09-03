@@ -3,7 +3,7 @@
 include('verifica_login.php');
 include('conexao.php');
 
-$sql2 = "select idpartitura, nome from partitura where tipo = 'dobrados' group by  nome";    
+$sql2 = "select nome from partitura where tipo = 'dobrados' group by  nome";    
 $result2= mysqli_query($conexao,$sql2);
 
 
@@ -35,47 +35,57 @@ $result2= mysqli_query($conexao,$sql2);
   <!-- sidebar-wrapper  -->
   <main class="page-content">
     <div class="container-fluid">
-      <!-- Modal extra grande -->
-      <?php
-      
-            while ($row2 = mysqli_fetch_assoc($result2)){
+<?php
+    while ($row2 = mysqli_fetch_assoc($result2)){
               $nome = $row2['nome'];
               
               echo'
-              <button class="btn btn-dark mb-2 "><a class=" " data-toggle="collapse" href="#'.$nome.'">'.$nome.'</a></button>
-              ';
               
-            }
-              $sql = "select * from partitura where tipo = 'dobrados' order by nome ";
-                $result = mysqli_query($conexao,$sql);
-                
-                while ($row = mysqli_fetch_assoc($result)) {
-                  $id = $row['idpartitura'];
-                  $nome = $row['nome'];
-                  $caminho = $row['caminho'];
-                  $naipe = $row['naipe'];
-                  $tipo = $row['tipo'];
-                  
-              echo'
-              <div id="'.$nome.'" class="panel-collapse collapse">
-                
-                <button class="btn btn-dark mr-3 mb-2" data-toggle="modal" data-target="#mymodal'.$id.'">' . $nome . " - " . $naipe .' </button>';
-                        echo '<div class="modal fade " id="mymodal'.$id.'" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
-                                <div class="modal-dialog modal-lg">
-                                    <div class="modal-content">
-                                        <div class="embed-responsive embed-responsive-16by9">
-                                            <iframe class="embed-responsive-item" id="frame" src="'. $caminho .'"></iframe>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-              </div>';
+      <div id="accordianId" role="tablist" aria-multiselectable="true">
+        <div class="card">
+          <div class="card-header" role="tab" id="section1HeaderId">
+            <h5 class="mb-0">
+              <a data-toggle="collapse" data-parent="#accordianId" href="#'.$nome.'" aria-expanded="true" aria-controls="'.$nome.'">
+                '.$nome.'
+              </a>
+            </h5>
+          </div>';
+        
+
+
+        $sql = "select * from partitura where nome = '$nome' order by nome ";
+        $result = mysqli_query($conexao,$sql);
+        
+        while ($row = mysqli_fetch_assoc($result)) {
+          $id = $row['idpartitura'];
+          $nome = $row['nome'];
+          $caminho = $row['caminho'];
+          $naipe = $row['naipe'];
+          $tipo = $row['tipo'];
+           
+      echo '
+          <div id="'.$nome.'" class="collapse in" role="tabpanel" aria-labelledby="'.$nome.'">
+            <div class="card-body">
+            <button class="btn btn-dark mr-3" data-toggle="modal" data-target="#mymodal'.$row['idpartitura'].'">' . $row['nome'] . " - " . $row['naipe'] .' </button>';
+            $caminho = $row['caminho'];
             
-             
-                }
-                
-               
+            echo '<div class="modal fade " id="mymodal'.$row['idpartitura'].'" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="embed-responsive embed-responsive-16by9">
+                            <iframe class="embed-responsive-item" id="frame" src="'. $caminho .'"></iframe>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </div>
+          
+        </div>';
+        }
+      }
         ?>
+
+      <!-- Modal extra grande -->
 
   </main>
   <!-- page-content" -->

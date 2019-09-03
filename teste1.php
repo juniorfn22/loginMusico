@@ -3,22 +3,20 @@
 include('verifica_login.php');
 include('conexao.php');
 
-/*$sql = "select idpartitura, nome, caminho,naipe,tipo from partitura where tipo = 'dobrados' group by idpartitura, nome, caminho, naipe, tipo";
-    $result = mysqli_query($conexao,$sql);
-      while ($row = mysqli_fetch_assoc($result)) {
-        
-        $nome = $row['nome'];
-#print_r($nome);
-        }*/
 
-$sql = "select idpartitura, nome, caminho,naipe,tipo from partitura where tipo = 'dobrados' ";
-    $result = mysqli_query($conexao,$sql);
-    $rows = array();
-        while ($row = mysqli_fetch_array($result)){
-            $rows[] = $row;
-            
-        }
-        foreach ($rows as $row){
-            echo $row['nome'].$row['naipe'].'<br>';
-        }
+$separarNome = mysqli_query($conexao, "select nome from partitura where tipo = 'dobrados' group by nome");
+
+while ($resNome = mysqli_fetch_array($separarNome)){
+    $nomePartitura = $resNome['nome'];
+    $separarDados = (mysqli_query($conexao, "select idpartitura, nome, caminho,naipe,tipo from partitura where nome='$nomePartitura'"));
+    echo $resNome['nome'].'<hr>';
+    while ($resNome2 = mysqli_fetch_array($separarDados)){
+        echo $resNome2['nome'].'<br>';
+        echo $resNome2['caminho'].'<br>';
+        echo $resNome2['naipe'].'<br>';
+    }
+}
+
+
+
 ?>
