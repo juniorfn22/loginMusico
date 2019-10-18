@@ -3,7 +3,7 @@
 include('verifica_login.php');
 include('conexao.php');
 
-$sql2 = "select nome from partitura where tipo = 'hc' group by nome";    
+$sql2 = "select nome from partitura where tipo = 'cc' group by  nome";    
 $result2= mysqli_query($conexao,$sql2);
 
 

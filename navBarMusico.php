@@ -12,7 +12,7 @@
       $naipe = "1º Trompete";
     }
     ?>
-    <a href="areaMaestro.php">Area do Maestro</a>
+    <a href="areaMusico.php">Area do Musico</a>
 
    
   </div>
@@ -32,19 +32,6 @@
         <span>Menu</span>
       </li>
       <li>
-      <div class="panel-group">
-        <div class="panel panel-default">
-            <div class="panel-heading">
-            <a data-toggle="collapse" href="#collapse1">Cadastrar</a>
-            </div>
-            <div id="collapse1" class="panel-collapse collapse">
-            <div class="panel-body ml-3"><a href="cadastroMusico.php">Musico</a></div>
-            <div class="panel-footer ml-3"><a href="cadastroPartitura.php">Partitura</a></div>
-            </div>
-        </div>
-        </div>
-        </li> 
-        <li>
       <div class="panel-group">
         <div class="panel panel-default">
             <div class="panel-heading">

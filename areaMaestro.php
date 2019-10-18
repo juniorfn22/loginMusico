@@ -5,13 +5,6 @@ include('conexao.php');
 
 $sql = "select idpartitura,nome, caminho,naipe from partitura ";
     $result = mysqli_query($conexao,$sql);
-
-if ($_SESSION['naipe'] == 0){
-  $naipe = "Maestro";
-}
-
-
-
 ?>
 
 <!DOCTYPE html>
@@ -40,28 +33,8 @@ if ($_SESSION['naipe'] == 0){
   <!-- sidebar-wrapper  -->
   <main class="page-content">
     <div class="container-fluid">
-      <!-- Modal extra grande -->
-      
-
-      <?php
-            
-            while ($row = mysqli_fetch_array($result)) {
-              echo '<button class="btn btn-dark mr-3 mb-2" data-toggle="modal" data-target="#mymodal'.$row['idpartitura'].'">' . $row['nome'] . " - " . $row['naipe'] .' </button>';
-              $caminho = $row['caminho'];
-              
-              echo '<div class="modal fade " id="mymodal'.$row['idpartitura'].'" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
-                  <div class="modal-dialog modal-lg">
-                      <div class="modal-content">
-                          <div class="embed-responsive embed-responsive-16by9">
-                              <iframe class="embed-responsive-item" id="frame" src="'. $caminho .'"></iframe>
-                          </div>
-                      </div>
-                  </div>
-              </div>';
-
-            }   
-        ?>
-
+    
+    </div>
   </main>
   <!-- page-content" -->
   
