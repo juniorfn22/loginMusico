@@ -5,6 +5,9 @@ include('conexao.php');
 
 $sql = "select idpartitura,nome, caminho,naipe from partitura ";
     $result = mysqli_query($conexao,$sql);
+
+$naipe = $_SESSION['naipe'];
+
 ?>
 
 <!DOCTYPE html>
@@ -29,11 +32,22 @@ $sql = "select idpartitura,nome, caminho,naipe from partitura ";
   <a id="show-sidebar" class="btn btn-sm btn-dark" href="#">
     <i class="fas fa-bars"></i>
   </a>
-    <?php include('navBar.php'); ?>
+    <?php 
+    if ($naipe == '0'){
+      include('navBar.php');
+    } else {
+      include('navBarMusico.php');
+    }
+    #include($navbar);
+    #var_dump($naipe,$navbar);
+    
+     ?>
   <!-- sidebar-wrapper  -->
   <main class="page-content">
     <div class="container-fluid">
     
+    
+
     </div>
   </main>
   <!-- page-content" -->

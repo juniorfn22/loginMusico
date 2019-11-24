@@ -5,7 +5,7 @@ include('conexao.php');
 
 $sql2 = "select nome from partitura where tipo = 'avulsos' group by  nome";    
 $result2= mysqli_query($conexao,$sql2);
-
+$naipe = $_SESSION['naipe'];
 
 ?>
 
@@ -31,7 +31,11 @@ $result2= mysqli_query($conexao,$sql2);
   <a id="show-sidebar" class="btn btn-sm btn-dark" href="#">
     <i class="fas fa-bars"></i>
   </a>
-    <?php include('navBar.php') ?>
+  <?php if ($naipe == '0'){
+      include('navBar.php');
+    } else {
+      include('navBarMusico.php');
+    } ?>
   <!-- sidebar-wrapper  -->
   <main class="page-content">
     <div class="container-fluid">

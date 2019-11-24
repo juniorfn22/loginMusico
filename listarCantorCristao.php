@@ -3,9 +3,15 @@
 include('verifica_login.php');
 include('conexao.php');
 
-$sql2 = "select nome from partitura where tipo = 'cc' group by  nome";    
-$result2= mysqli_query($conexao,$sql2);
+$naipe = $_SESSION['naipe'];
 
+if ($naipe == '0'){
+  $sql2 = "select nome from partitura where tipo = 'cc' group by  nome";    
+  $result2= mysqli_query($conexao,$sql2);
+} else {
+  $sql2 = "select nome from partitura where tipo = 'cc' and naipe ={'$naipe'} group by  nome";    
+  $result2= mysqli_query($conexao,$sql2);
+}
 
 ?>
 
@@ -13,7 +19,7 @@ $result2= mysqli_query($conexao,$sql2);
 <html lang="en">
 
 <head>
-    <meta charset="utf-8">
+    <meta charset="utf-8">  
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="Responsive sidebar template with sliding effect and dropdown menu based on bootstrap 3">
@@ -31,7 +37,11 @@ $result2= mysqli_query($conexao,$sql2);
   <a id="show-sidebar" class="btn btn-sm btn-dark" href="#">
     <i class="fas fa-bars"></i>
   </a>
-    <?php include('navBar.php') ?>
+  <?php if ($naipe == '0'){
+      include('navBar.php');
+    } else {
+      include('navBarMusico.php');
+    } ?>
   <!-- sidebar-wrapper  -->
   <main class="page-content">
     <div class="container-fluid">

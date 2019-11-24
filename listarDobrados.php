@@ -3,7 +3,13 @@
 include('verifica_login.php');
 include('conexao.php');
 
-$sql2 = "select nome from partitura where tipo = 'dobrados' group by  nome";    
+$naipe = $_SESSION['naipe'];
+
+if ($naipe == '0'){
+  $sql2 = "select nome from partitura where tipo = 'dobrados' group by  nome";    
+} else {
+  $sql2 = "select nome from partitura where tipo = 'dobrados' and naipe ='$naipe' group by  nome";    
+}
 $result2= mysqli_query($conexao,$sql2);
 
 
@@ -31,11 +37,17 @@ $result2= mysqli_query($conexao,$sql2);
   <a id="show-sidebar" class="btn btn-sm btn-dark" href="#">
     <i class="fas fa-bars"></i>
   </a>
-    <?php include('navBar.php') ?>
+    <?php if ($naipe == '0'){
+      include('navBar.php');
+    } else {
+      include('navBarMusico.php');
+    } ?>
   <!-- sidebar-wrapper  -->
   <main class="page-content">
     <div class="container-fluid">
+
 <?php
+
     while ($row2 = mysqli_fetch_assoc($result2)){
               $nome = $row2['nome'];
               
@@ -53,7 +65,7 @@ $result2= mysqli_query($conexao,$sql2);
         
 
 
-        $sql = "select * from partitura where nome = '$nome' order by nome ";
+        $sql = "select * from partitura where nome = '$nome' and naipe = '$naipe' order by nome ";
         $result = mysqli_query($conexao,$sql);
         
         while ($row = mysqli_fetch_assoc($result)) {

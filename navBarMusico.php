@@ -38,8 +38,8 @@
             <a data-toggle="collapse" href="#collapse2">Hinos</a>
             </div>
             <div id="collapse2" class="panel-collapse collapse">
-            <div class="panel-footer ml-3"><a href="listaAvulsos.php">Avulsos</a></div>
-            <div class="panel-footer ml-3"><a href="listarCantos.php">Cantor Cristão</a></div>
+            <div class="panel-footer ml-3"><a href="listarAvulsos.php">Avulsos</a></div>
+            <div class="panel-footer ml-3"><a href="listarCantorCristao.php">Cantor Cristão</a></div>
             <div class="panel-footer ml-3"><a href="listarDobrados.php">Dobrados</a></div>
             <div class="panel-body ml-3"><a href="listarHarpa.php">Harpa Cristã</a></div>
             </div>

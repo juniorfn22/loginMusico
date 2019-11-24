@@ -30,7 +30,13 @@ $sql = "select idpartitura,nome, caminho,naipe from partitura where naipe='{$_SE
   <a id="show-sidebar" class="btn btn-sm btn-dark" href="#">
     <i class="fas fa-bars"></i>
   </a>
-  <?php include('navBarMusico.php'); ?>
+  <?php 
+  if ($naipe == '0'){
+    include('navBar.php');
+  } else {
+    include('navBarMusico.php');
+  }
+   ?>
   <!-- sidebar-wrapper  -->
   <main class="page-content">
     <div class="container-fluid">
