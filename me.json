@@ -1,0 +1,20 @@
+{
+    "dev":{
+        "name": "José Carlos",
+        "lastname": "Ferreira Nunes Júnior",
+        "age": 30,
+        "email": "juniorfn22@gmail.com",
+        "back-end": {
+            "languages": "PHP, Javascript",
+            "FrameWorks":"Laravel,CodeIgniter, Node.js"
+        },
+        "front-end": {
+            "languages":" HTML5,CSS3 ",
+            "frameworks" : "BootStrap, Bulma, React.js"
+        },
+        "database": "SQL Server, MySQL",
+        "CMS":"Wordpress, Elementor"
+
+    }
+
+}

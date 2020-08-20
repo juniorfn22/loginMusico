@@ -3,21 +3,23 @@
 include('verifica_login.php');
 include('conexao.php');
 
-$naipe = $_SESSION['naipe'];
-
-if ($naipe == '0'){
-  $sql2 = "select nome from partitura where tipo = 'dobrados' group by  nome";    
-} else {
-  $sql2 = "select nome from partitura where tipo = 'dobrados' and naipe ='$naipe' group by  nome";    
-}
-$result2= mysqli_query($conexao,$sql2);
-
-
+$naipeSessao = $_SESSION['naipe'];
+    if ($naipeSessao == '0' || $naipeSessao == "Maestro"){
+      $sql2 = "SELECT partitura.nome
+      FROM partitura 
+      INNER JOIN naipe 
+      ON naipe.idnaipe=partitura.naipe where partitura.tipo = 'dobrados' group by nome";    
+    } else {
+      $sql2 = "SELECT partitura.nome ,partitura.naipe, naipe.nome as naipe
+      FROM partitura
+      INNER JOIN naipe 
+      ON naipe.idnaipe=partitura.naipe where partitura.tipo = 'dobrados' and partitura.naipe ='$naipeSessao' group by nome";
+    }
+    $result2= mysqli_query($conexao,$sql2);
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="pt-br">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -37,7 +39,7 @@ $result2= mysqli_query($conexao,$sql2);
   <a id="show-sidebar" class="btn btn-sm btn-dark" href="#">
     <i class="fas fa-bars"></i>
   </a>
-    <?php if ($naipe == '0'){
+    <?php if ($naipeSessao == '0'){
       include('navBar.php');
     } else {
       include('navBarMusico.php');
@@ -47,41 +49,48 @@ $result2= mysqli_query($conexao,$sql2);
     <div class="container-fluid">
 
 <?php
-
     while ($row2 = mysqli_fetch_assoc($result2)){
               $nome = $row2['nome'];
-              
-              echo'
-              
-      <div id="accordianId" role="tablist" aria-multiselectable="true">
-        <div class="card">
-          <div class="card-header" role="tab" id="section1HeaderId">
-            <h5 class="mb-0">
-              <a data-toggle="collapse" data-parent="#accordianId" href="#'.$nome.'" aria-expanded="true" aria-controls="'.$nome.'">
-                '.$nome.'
-              </a>
-            </h5>
-          </div>';
-        
+              echo' 
+              <div id="accordianId" role="tablist" aria-multiselectable="true">
+                <div class="card">
+                  <div class="card-header" role="tab" id="section1HeaderId">
+                    <h5 class="mb-0">
+                      <a data-toggle="collapse" data-parent="#accordianId" href="#'.$nome.'" aria-expanded="true" aria-controls="'.$nome.'">
+                        '.$nome.'
+                      </a>
+                    </h5>
+                  </div>';
 
+        if ($naipeSessao == '0' || $naipe == "naipeSessao"){
+          // $sql = "select * from partitura where nome = '$nome' order by nome ";
+          $sql = "SELECT partitura.idpartitura,partitura.nome, naipe.nome as naipe, partitura.caminho, partitura.tipo
+          FROM naipe 
+          INNER JOIN partitura
+          ON naipe.idnaipe=partitura.naipe where partitura.nome = '$nome' order by nome";
+        } else {
+          // $sql = "select * from partitura where nome = '$nome' and naipe ='$naipe'  order by nome ";
+          $sql = "SELECT partitura.idpartitura,partitura.nome, naipe.nome as naipe, partitura.caminho, partitura.tipo
+          FROM naipe 
+          INNER JOIN partitura
+          ON naipe.idnaipe=partitura.naipe where partitura.nome = '$nome' and naipe.nome = '$naipeSessao' order by nome";
+        }
 
-        $sql = "select * from partitura where nome = '$nome' and naipe = '$naipe' order by nome ";
         $result = mysqli_query($conexao,$sql);
-        
         while ($row = mysqli_fetch_assoc($result)) {
           $id = $row['idpartitura'];
           $nome = $row['nome'];
           $caminho = $row['caminho'];
           $naipe = $row['naipe'];
           $tipo = $row['tipo'];
-           
-      echo '
+
+          echo '
           <div id="'.$nome.'" class="collapse in" role="tabpanel" aria-labelledby="'.$nome.'">
             <div class="card-body">
-            <button class="btn btn-dark mr-3" data-toggle="modal" data-target="#mymodal'.$row['idpartitura'].'">' . $row['nome'] . " - " . $row['naipe'] .' </button>';
+            <button class="btn btn-dark mr-3" data-toggle="modal" data-target="#mymodal'.$id.'">' . $naipe . ' </button>';
             $caminho = $row['caminho'];
             
-            echo '<div class="modal fade " id="mymodal'.$row['idpartitura'].'" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
+            echo '<div class="modal fade" id="mymodal'.$id.'" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
                 <div class="modal-dialog modal-lg">
                     <div class="modal-content">
                         <div class="embed-responsive embed-responsive-16by9">
@@ -95,10 +104,9 @@ $result2= mysqli_query($conexao,$sql2);
         </div>';
         }
       }
-        ?>
+?>
 
       <!-- Modal extra grande -->
-
   </main>
   <!-- page-content" -->
   

@@ -2,16 +2,14 @@
 <nav id="sidebar" class="sidebar-wrapper">
 <div class="sidebar-content">
   <div class="sidebar-brand">
-  <?php if ($_SESSION['naipe'] == 0){
-      $naipe = "Maestro";
-    } else if ($_SESSION['naipe'] == 1){
-      $naipe = "1º Clarinete";
-    } else if ($_SESSION['naipe'] == 2){
-      $naipe = "2º Clarinete";
-    } else if ($_SESSION['naipe'] == 3){
-      $naipe = "1º Trompete";
+  <?php 
+    $naipe = $_SESSION['naipe'];
+    $sql = "select nome from naipe where idnaipe ='$naipe'";
+    $result = mysqli_query($conexao, $sql);
+    while ($row = mysqli_fetch_assoc($result)){
+      $naipe = $row['nome'];
     }
-    ?>
+  ?> 
     <a href="areaMusico.php">Area do Musico</a>
 
    

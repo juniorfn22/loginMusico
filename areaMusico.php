@@ -2,7 +2,7 @@
 //session_start();
 include('verifica_login.php');
 include('conexao.php');
-
+$naipe = $_SESSION['naipe'];
 $sql = "select idpartitura,nome, caminho,naipe from partitura where naipe='{$_SESSION['naipe']}' ";
     $result = mysqli_query($conexao,$sql);
     

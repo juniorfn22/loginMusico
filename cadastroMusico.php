@@ -70,21 +70,18 @@ include('conexao.php');
                             <input type="password" name="senha" placeholder="digite a senha" class="form-control" required>
                         </div>  
                       <div class="col">
+                      <?php 
+                      $sql = 'select * from naipe';
+                      $result = mysqli_query($conexao,$sql);
+                      ?>
                             <label for="nome" class="label mr-1">Naipe:</label>
                             <select name="naipe" id="naipe" class="custom-select" required>
-                                                <option value="" class="op" id="op" disable selected>selecione o naipe</option>
-                                                <option value="0">Maestro</option>
-                                                <option value="1">1º Clarinete</option>
-                                                <option value="2">2º Clarinete</option>
-                                                <option value="3">1º Trompete</option>
-                                                <option value="4">2º Trompete</option>
-                                                <option value="5">Flauta</option>
-                                                <option value="6">Sax Alto</option>
-                                                <option value="7">Sax Tenor</option>
-                                                <option value="8">Trombone</option>
-                                                <option value="9">Tuba Bb</option>
-                                                <option value="10">Tuba Eb</option>
-                                                <option value="11">Violino</option>
+                            <option value="" class="op" id="op" disable selected>selecione o naipe</option>
+                            <?php while ($row = mysqli_fetch_assoc($result)){
+                              $id = $row['idnaipe'];
+                              $nome = $row['nome'];
+                              echo '<option value="'.$id.'">'.$nome.'</option>';
+                            } ?>
                             </select>
                       </div>
                       </div>

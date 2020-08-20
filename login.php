@@ -6,6 +6,9 @@ if (empty($_POST['usuario']) || empty($_POST['senha'])){
     header('Location: index.php');
     exit();
 }
+// var_dump( $_POST['usuario']);
+// var_dump( md5($_POST['senha']));
+// die();
 
 
 $login = mysqli_real_escape_string ($conexao, $_POST['usuario']);
