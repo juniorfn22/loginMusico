@@ -1,6 +1,6 @@
-jQuery(function ($) {
 
-    $(".sidebar-dropdown > a").click(function() {
+jQuery(function ($) {
+  $(".sidebar-dropdown > a").click(function() {
   $(".sidebar-submenu").slideUp(200);
   if (
     $(this)
@@ -23,9 +23,11 @@ jQuery(function ($) {
 });
 
 $("#close-sidebar").click(function() {
+  console.log('aqui');
   $(".page-wrapper").removeClass("toggled");
 });
 $("#show-sidebar").click(function() {
+  console.log('aqui1');
   $(".page-wrapper").addClass("toggled");
 });
 

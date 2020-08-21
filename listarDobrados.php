@@ -16,6 +16,7 @@ $naipeSessao = $_SESSION['naipe'];
       ON naipe.idnaipe=partitura.naipe where partitura.tipo = 'dobrados' and partitura.naipe ='$naipeSessao' group by nome";
     }
     $result2= mysqli_query($conexao,$sql2);
+    
 ?>
 
 <!DOCTYPE html>
@@ -73,10 +74,11 @@ $naipeSessao = $_SESSION['naipe'];
           $sql = "SELECT partitura.idpartitura,partitura.nome, naipe.nome as naipe, partitura.caminho, partitura.tipo
           FROM naipe 
           INNER JOIN partitura
-          ON naipe.idnaipe=partitura.naipe where partitura.nome = '$nome' and naipe.nome = '$naipeSessao' order by nome";
+          ON naipe.idnaipe=partitura.naipe where partitura.nome = '$nome' and partitura.naipe = '$naipeSessao' order by nome";
         }
 
         $result = mysqli_query($conexao,$sql);
+        // var_dump($naipe);die();
         while ($row = mysqli_fetch_assoc($result)) {
           $id = $row['idpartitura'];
           $nome = $row['nome'];
